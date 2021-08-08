@@ -20,11 +20,29 @@ guessBtn.addEventListener('click', function(){
     }
 
     if(guess === winningNumber){
-        guessInput.disabled = true;
-        guessInput.style.bordercolor = 'green';
-        setMessage(`${winningNumber} es correcto, GANASTE`, 'green');
+        gameOver(true, `${winningNumber} es correcto, GANASTE`);
+    } else{
+        chancesLeft -= 1;
+        if(chancesLeft === 0){
+            gameOver(false, `Fin del Juego, perdiste, el numero correcto era ${winningNumber}`);
+        } else{
+            guessInput.style.bordercolor = 'red';
+            guessInput.value = '';
+            setMessage(`${guess} no es correcto, quedan ${chancesLeft} intentos.`, 'red');
+        }
     }
 });
+
+function gameOver(won, msg){
+    let color;
+    won === true ? color = 'green' : color = 'red';
+
+    guessInput.disabled = true;
+    guessInput.style.borderColor = color;
+    message.style.color = color;
+
+    setMessage(msg);
+}
 
 function setMessage(msg, color){
     message.style.color = color;
