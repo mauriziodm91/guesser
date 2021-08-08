@@ -1,9 +1,10 @@
-
+//VARIABLE DECLARATION
 let min = 1;
 let max = 10;
 let winningNumber = getRandomNumber(min, max);
 let chancesLeft = 3;
 
+//SELECTORS
 const game = document.querySelector('#game');
 const minNum = document.querySelector('.min-num');
 const maxNum = document.querySelector('.max-num');
@@ -13,13 +14,13 @@ const message = document.querySelector('.message');
 
 minNum.textContent = min;
 maxNum.textContent = max;
-
+//GAME OVER BUTTON LISTENER
 game.addEventListener('mousedown', function(e){
     if(e.target.className === 'play-again'){
         window.location.reload();
     }
 });
-
+//BUTTON EVENT LISTENER
 guessBtn.addEventListener('click', function(){
     let guess = parseInt(guessInput.value);
     if(isNaN(guess) || guess < min || guess >max){
@@ -59,7 +60,7 @@ function setMessage(msg, color){
     message.style.color = color;
     message.textContent = msg;
 }
-
+//RANDOM NUMBER
 function getRandomNumber(min, max){
     return Math.floor(Math.random() * (max-min+1)+min);
 }
